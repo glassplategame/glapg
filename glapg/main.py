@@ -1,5 +1,5 @@
-#!/usr/bin/python
-
+from glapg.factory import GlapgFactory
+from twisted.internet import reactor
 """
 Copyright (C) 2013 Dunbar Aitkens
 
@@ -17,4 +17,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-print("The program of 1 billion lines begins with a single statement.")
+def main():
+    reactor.listenTCP(1025, GlapgFactory())
+    reactor.run()
+
+if __name__ == '__main__':
+    main()
+
