@@ -1,0 +1,32 @@
+Language: Python (3.3 w/ev)
+Architecture: Client-Server
+Rough Outline:
+- Server API
+- IPC (Twisted)
+- Write Client
+- Write Server
+- Display Graphics
+- Game State
+
+Board:
+- tiles[]
+- trains[]
+- cubes[]
+
+Tiles (cards):
+- name
+- image
+
+Train:
+- color
+* cube_initial
+* connections[]
+
+Connection:
+- Text
+* cubes_prev[]
+* cube_next
+
+Cube:
+- number
+- state

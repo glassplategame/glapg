@@ -1,0 +1,32 @@
+Potential API calls:
+Game Actions:
+- new chain
+- new branch
+- permit
+- challenge
+- player away
+- blank
+- player quit
+- okay
+- send message
+
+Game Administration:
+- player kick
+- start new game
+- end game
+- player silence
+- pause game
+
+Player Actions:
+- player join
+- player connect
+- player disconnect
+- set name
+
+
+Things to look into:
+- Twisted
+- Autobahn
+- Json
+- XMPP
+- WAMP
