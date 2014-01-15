@@ -13,8 +13,8 @@ class Board(Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(63))
 
-# Represents one if the player's moves.
 class Cube(Model):
+    """Represents one if the player's moves."""
     __tablename__ = 'cube'
 
     id = Column(Integer, primary_key=True)
@@ -25,8 +25,8 @@ class Cube(Model):
     state = Column(Integer)
     created = Column(DateTime)
 
-# Represents one of the 'plates' in the Glass Plate Game.
 class Plate(Model):
+    """Represents one of the 'plates' in the Glass Plate Game."""
     __tablename__ = 'plate'
 
     id = Column(Integer, primary_key=True)
@@ -38,6 +38,7 @@ class Plate(Model):
     image_name = Column(String(63))
 
 class Connection(Model):
+    """Represents a connection between multiple cubes."""
     __tablename__ = 'connection'
 
     id = Column(Integer, primary_key=True)
