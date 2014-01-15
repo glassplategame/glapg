@@ -1,1 +1,3 @@
 glapg/config.py
+.*.swp
+*.pyc
