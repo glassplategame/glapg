@@ -1,23 +1,54 @@
+#!/usr/bin/env python
+
 from twisted.internet import reactor
 from twisted.internet.endpoints import connectProtocol, TCP4ClientEndpoint
-from twisted.internet.protocol import Protocol
+from twisted.internet.protocol import Protocol, ClientFactory
 
-class Client(Protocol):
+class GlapgProtocol(Protocol):
+    def __init__(self, factory):
+        self.client = factory.client
+        self.factory = factory
+
     def sendMessage(self, message):
         self.transport.write(message)
 
-def connect(protocol):
-    # Send a message to the glapg server.
-    protocol.sendMessage("Hello, world!")
+    def dataReceived(self, data):
+        print("Server said: %s" % data)
 
-    # Disconnect from the glapg server.
-    reactor.callLater(3, protocol.transport.loseConnection)
+class GlapgClientFactory(ClientFactory):
+    def __init__(self, client):
+        self.clients = set()
+        self.client = client
+
+    def startedConnecting(self, connector):
+        print("Starting connection")
+
+    def buildProtocol(self, address):
+        print("Connected")
+        return GlapgProtocol(self)
+
+    def clientConnectionLost(self, connector, reason):
+        print("Connection lost: %s" % reason)
+
+    def clientConnectionFailed(self, connector, reason):
+        print("Connection failed: %s" % reason)
+
+class Client(object):
+    """
+    The actual Glass Plate Game Client.
+    """
+    def __init__(self):
+        pass
+
+    def main(self):
+        pass
 
 def main():
+    # Create Glass Plate Game client.
+    client = Client()
+
     # Connect to the glapg server.
-    point = TCP4ClientEndpoint(reactor, "localhost", 1025)
-    protocol = connectProtocol(point, Client())
-    protocol.addCallback(connect)
+    reactor.connectTCP("localhost", 1025, GlapgClientFactory(client))
     reactor.run()
 
 if __name__ == '__main__':

@@ -14,10 +14,13 @@ class Board(Model):
     name = Column(String(63))
 
 class Cube(Model):
-    """Represents one if the player's moves."""
+    """Represents one of the player's moves."""
     __tablename__ = 'cube'
 
     id = Column(Integer, primary_key=True)
+    # Location of the row on the board.
+    row = Column(Integer)
+    column = Column(Integer)
     board_id = Column(Integer, ForeignKey('board.id'))
     board = relationship('Board')
     plate_id = Column(Integer, ForeignKey('plate.id'))
@@ -32,6 +35,10 @@ class Plate(Model):
     __tablename__ = 'plate'
 
     id = Column(Integer, primary_key=True)
+    # Location of the row on the board.
+    row = Column(Integer)
+    # Location of the column on the board.
+    column = Column(Integer)
     board_id = Column(Integer, ForeignKey('board.id'))
     board = relationship('Board')
     # The plate's textual representation.
@@ -57,6 +64,7 @@ class Connection(Model):
     cube_next = Column(Integer, ForeignKey('cube.id'))
 
 class Train(Model):
+    """Represents a series of connections."""
     __tablename__ = 'train'
 
     id = Column(Integer, primary_key=True)

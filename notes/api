@@ -1,17 +1,17 @@
 Potential API calls:
 Game Actions:
-- new chain
-- new branch
-- permit
-- challenge
-- player away
-- blank
-- player quit
-- okay
-- send message
+- new chain (Plate)
+- new branch (Plate, Cubes)
+- permit (Cube)
+- challenge (Cube)
+- player away (Player)
+- blank (Cube)
+- player quit (Player)
+- okay (Cube)
+- send message (Player, player)
 
 Game Administration:
-- player kick
+- player kick (Player)
 - start new game
 - end game
 - player silence
